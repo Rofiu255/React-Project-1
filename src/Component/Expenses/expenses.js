@@ -5,15 +5,25 @@ import ExpensesFilter from "./ExpensesFilter";
 import "./Expenses.css";
 
 function Expenses(props) {
-  const [filteredYear, setFilteredYear] = useState('2020');
+  const [filteredYear, setFilteredYear] = useState("2020");
 
-  const filterChangeHadler = selectedYear => {
+  const filterChangeHadler = (selectedYear) => {
     setFilteredYear(selectedYear);
   };
 
-  return(
-    <Card className="expenses"> 
-        <ExpensesFilter selected={filteredYear} onChangeFilter={filterChangeHadler} />
+  return (
+    <Card className="expenses">
+      <ExpensesFilter
+        selected={filteredYear}
+        onChangeFilter={filterChangeHadler}
+      />
+
+      {/*DYNAMIC WAY OF RENDERING LIST IN ARRAY*/}
+      {props.items.map((item) => (
+        <ExpenseItem key={item.id} title={item.title} amount={item.price} date={item.date} />
+      ))}
+
+      {/* NON DYNAMIC WAY OF RENDERING
         <ExpenseItem
           title={props.items[0].title}
           amount={props.items[0].price}
@@ -33,9 +43,9 @@ function Expenses(props) {
           title={props.items[3].title}
           amount={props.items[3].price}
           date={props.items[3].date}
-        ></ExpenseItem>
+        ></ExpenseItem>*/}
     </Card>
-  )
+  );
 }
 
 export default Expenses;
