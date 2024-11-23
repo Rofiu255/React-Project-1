@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import Card from "../UI/Card";
-import ExpenseItem from "./ExpenseItem";
+//import ExpenseItem from "./ExpenseItem";
+import ExpensesList from "./ExpensesList";
 import ExpensesFilter from "./ExpensesFilter";
 import "./Expenses.css";
+import ExpenseChart from "./ExpenseChart";
 
 function Expenses(props) {
   const [filteredYear, setFilteredYear] = useState("2020");
@@ -11,6 +13,24 @@ function Expenses(props) {
     setFilteredYear(selectedYear);
   };
 
+  const filteredExpenses = props.items.filter((expense) => {
+    return expense.date.getFullYear().toString() === filteredYear;
+  });
+
+  {/* let filteredContent = <p>No expense is Found</p>;
+
+  if (filteredExpenses.length > 0){
+    filteredContent = filteredExpenses.map((expense) => (
+      <ExpenseItem
+        key={expense.id}
+        title={expense.title}
+        amount={expense.price}
+        date={expense.date}
+      />
+    ))
+  }  */}
+
+
   return (
     <Card className="expenses">
       <ExpensesFilter
@@ -18,10 +38,44 @@ function Expenses(props) {
         onChangeFilter={filterChangeHadler}
       />
 
-      {/*DYNAMIC WAY OF RENDERING LIST IN ARRAY*/}
-      {props.items.map((item) => (
-        <ExpenseItem key={item.id} title={item.title} amount={item.price} date={item.date} />
-      ))}
+      <ExpenseChart expenses={filteredExpenses}/>
+
+      {/*DYNAMIC WAY OF RENDERING LIST IN ARRAY           TOPIC 1*/}
+
+      {/*OUTPUTING CONDITIONAL CONTENT WITH DYNAMIC WAY OF RENDERING LIST IN ARRAY    TOPIC 1a */}
+      {/* {filteredExpenses.length === 0 ? (
+        <p>No expense is Found</p>
+      ) : (
+        filteredExpenses.map((expense) => (
+          <ExpenseItem
+            key={expense.id}
+            title={expense.title}
+            amount={expense.price}
+            date={expense.date}
+          />
+        ))
+      )} */}
+
+      {/*OUTPUTING CONDITIONAL CONTENT WITH DYNAMIC WAY OF RENDERING LIST IN ARRAY TOPIC 1b*/}
+      {/* {filteredExpenses.length === 0 && <p>No expense is Found</p>}
+      {filteredExpenses.length > 0 &&
+        filteredExpenses.map((expense) => (
+          <ExpenseItem
+            key={expense.id}
+            title={expense.title}
+            amount={expense.price}
+            date={expense.date}
+          />
+        ))} */}
+
+
+      {/*OUTPUTING CONDITIONAL CONTENT WITH DYNAMIC WAY OF RENDERING LIST IN ARRAY TOPIC 1b*/}
+
+      {/*{filteredContent} */}
+
+      {/* ANY OF THE ABOVE WAY OR THE FOLLOWING WHICH IS JUST TO MAKE THE CODE READABLE */}
+
+      <ExpensesList items={filteredExpenses}/>
 
       {/* NON DYNAMIC WAY OF RENDERING
         <ExpenseItem

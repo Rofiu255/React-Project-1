@@ -2,16 +2,16 @@ import React, { useState } from "react";
 import "./ExpensesForm.css";
 
 const ExpensesForm = (props) => {
-  {
+  
     /*THREE STATE INPUT STORAGE */
-  }
+  
   const [entertedTitle, setEnteredTitle] = useState("");
   const [entertedAmount, setEnteredAmount] = useState("");
   const [entertedDate, setEnteredDate] = useState("");
 
-  {
+
     /*ONE STATE INPUT STORAGE */
-  }
+  
   /*const [userInput, setUserInput] = useState({
         enteredTitle: '',
         enteredAmount: '',
@@ -19,15 +19,15 @@ const ExpensesForm = (props) => {
     });*/
 
   const titleChangeHandler = (event) => {
-    {
+    
       /* FOR THE THREE STATE INPUT STORAGE */
-    }
+    
 
     setEnteredTitle(event.target.value);
 
-    {
+    
       /*FOR THE ONE STATE INPUT STORAGE USE EITHER Of THE TWO OPTIONS BELOW */
-    }
+    
 
     /*setUserInput({
             ...userInput,
